@@ -1,0 +1,39 @@
+.logo {
+  display: flex;
+  margin-left: 25px;
+  color: white;
+  margin-top: 20px;
+  width: 15%;
+  cursor: pointer;
+}
+
+.sair {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  padding: 0 16px;
+}
+
+.sair:hover{
+  color: #1890ff;
+}
+
+.sairMarginExpanded {
+  display: flex;
+  margin-left: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.sairMarginExpanded:hover{
+  color: #1890ff;
+}
+
+.spanHidden {
+  display: none;
+}
