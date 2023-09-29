@@ -20,14 +20,14 @@ const SiderMenu = () => {
     } as MenuItem;
   }
   const items: MenuItem[] = [
-    getItem("view 1", "1", <BorderOutlined />),
-    getItem("view 2", "2", <BorderOutlined />),
+    getItem("ANIME", "1", <BorderOutlined />),
+    getItem("MANGÁ", "2", <BorderOutlined />),
   ];
 
   //Ao criar uma nova rota no menu, adicionar a esse arry a posicição correspondente a key
   const navegarMenu = (value: number) =>{
     const rotas = [
-      "/base",
+      "/",
       "/baseSecond"
     ]
     navigate(rotas[value - 1]);

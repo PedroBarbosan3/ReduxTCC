@@ -5,7 +5,7 @@ import { Layout } from "antd";
 import SiderMenu from "../siderMenu/siderMenu";
 import { useAppDispatch, useAppSelector } from "../../../util/assets/hooks";
 import { changeMenu } from "../../../redux/configuracoesSlice";
-import { LogoutOutlined } from "@ant-design/icons";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -37,18 +37,13 @@ const MainTemplate = ({ children }: any) => {
           className="logo"
           onClick={() => dispatch(changeMenu(!configuracoesState.menu))}
         >
-          logo
+          {configuracoesState.menu ? (
+            <MenuUnfoldOutlined />
+          ) : (
+            <MenuFoldOutlined />
+          )}
         </div>
         <SiderMenu />
-        <div
-          className={configuracoesState.menu ? "sairMarginExpanded" : "sair"}
-          onClick={() => navigate("/")}
-        >
-          <LogoutOutlined />
-          <span className={configuracoesState.menu ? "spanHidden" : ""}>
-            sair
-          </span>
-        </div>
       </Sider>
       <Layout
         style={{
@@ -67,14 +62,6 @@ const MainTemplate = ({ children }: any) => {
           Header
         </Header>
         <Content>{children}</Content>
-        <Footer
-          style={{
-            backgroundColor: "white",
-            padding: 0,
-          }}
-        >
-          Footer
-        </Footer>
       </Layout>
       <ToastContainer
         position="top-right"

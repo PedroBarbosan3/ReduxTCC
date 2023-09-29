@@ -3,7 +3,6 @@ import MainTemplate from "./components/templates/main/mainTemplate";
 import { useAppSelector } from "./util/assets/hooks";
 import BaseView from "./views/baseView";
 import BaseViewSecond from "./views/baseViewSecond";
-import Login from "./views/login";
 
 //Substituir o MainTemplate nas rotas que forem obrigatórias o login, pelo PrivateRoute
 // const PrivateRouteTemplateLogin = ({ children }: any) => {
@@ -18,9 +17,8 @@ import Login from "./views/login";
 const RouteComponent = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Login />} />
       <Route
-        path="/base"
+        path="/"
         element={
           <MainTemplate>
             <BaseView />
