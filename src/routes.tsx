@@ -1,8 +1,6 @@
-import { Navigate, Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import MainTemplate from "./components/templates/main/mainTemplate";
-import { useAppSelector } from "./util/assets/hooks";
-import BaseView from "./views/baseView";
-import BaseViewSecond from "./views/baseViewSecond";
+import ListagemView from "./views/Lista";
 
 //Substituir o MainTemplate nas rotas que forem obrigatórias o login, pelo PrivateRoute
 // const PrivateRouteTemplateLogin = ({ children }: any) => {
@@ -21,15 +19,7 @@ const RouteComponent = () => (
         path="/"
         element={
           <MainTemplate>
-            <BaseView />
-          </MainTemplate>
-        }
-      />
-       <Route
-        path="/baseSecond"
-        element={
-          <MainTemplate>
-            <BaseViewSecond />
+            <ListagemView />
           </MainTemplate>
         }
       />

@@ -2,66 +2,43 @@ import "./style/mainTemplate.scss";
 import "antd/dist/antd.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Layout } from "antd";
-import SiderMenu from "../siderMenu/siderMenu";
-import { useAppDispatch, useAppSelector } from "../../../util/assets/hooks";
-import { changeMenu } from "../../../redux/configuracoesSlice";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Content } = Layout;
 
 const MainTemplate = ({ children }: any) => {
-  const configuracoesState = useAppSelector((state) => state.configuracoes);
-  const dispatch = useAppDispatch();
-  let navigate = useNavigate();
   return (
     <Layout
       style={{
-        backgroundColor: "#491bdf",
+        backgroundColor: "#f1f1f1",
         minHeight: "100vh",
       }}
     >
-      <Sider
-        collapsible
-        collapsed={configuracoesState.menu}
-        collapsedWidth={"8vh"}
-        trigger={null}
-        style={{
-          backgroundColor: "#491bdf",
-          borderTopRightRadius: "20px",
-          borderBottomRightRadius: "20px",
-        }}
-      >
-        <div
-          className="logo"
-          onClick={() => dispatch(changeMenu(!configuracoesState.menu))}
-        >
-          {configuracoesState.menu ? (
-            <MenuUnfoldOutlined />
-          ) : (
-            <MenuFoldOutlined />
-          )}
-        </div>
-        <SiderMenu />
-      </Sider>
       <Layout
         style={{
-          backgroundColor: "white",
           padding: "24px",
-          borderTopLeftRadius: "20px",
-          borderBottomLeftRadius: "20px",
         }}
       >
         <Header
           style={{
-            backgroundColor: "white",
-            padding: 0,
+            backgroundColor: "#ffffff",
+            padding: "0 24px",
+            border: "1px solid #dcdcdc",
+            borderRadius: "10px",
+            color: "#000000",
+            fontWeight: "bold",
+            fontSize: "20px",
           }}
         >
-          Header
+          LISTAGEM
         </Header>
-        <Content>{children}</Content>
+        <Content
+          style={{
+            marginTop: "24px",
+          }}
+        >
+          {children}
+        </Content>
       </Layout>
       <ToastContainer
         position="top-right"

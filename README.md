@@ -1,11 +1,13 @@
-# Introduction 
+# Introdução
+
 Projeto React Typescript utilizando redux toolkit
 
-# Getting Started
-1.	npm install 
-2.	npm start
-3.  instalar extensão no visual studio code chamada prettier code fomatter e utilizar nas páginas para melhor formatação do código
+# Iniciar o projeto
+
+1. npm install
+2. npm start
 
 # Lembrete:
-1. lembrar de importar o CSS do antd nas páginas em que ele está sendo utilizado, caso o CSS dele não esteja sendo aplicado
-2. o CSS dos componentes do antd só podem ser alterado atráves da tag style no componente ou pelo CSS do próprio componente, não adianta criar uma classe e tentar modificar esses componentes 
+
+1.  instalar extensão no visual studio code chamada prettier code fomatter e utilizar nas páginas para melhor formatação do código
+2.  a maneira mais fácil de alterar o CSS dos componentes do antd podem ser alterado atráves da tag style no componente ou pela própria classe do componente
