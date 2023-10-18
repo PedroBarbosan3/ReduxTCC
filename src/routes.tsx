@@ -1,6 +1,7 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import MainTemplate from "./components/templates/main/mainTemplate";
 import ListagemView from "./views/Lista";
+import DemonstraçaoEstado from "./demonstrações/estado";
 
 //Substituir o MainTemplate nas rotas que forem obrigatórias o login, pelo PrivateRoute
 // const PrivateRouteTemplateLogin = ({ children }: any) => {
@@ -20,6 +21,14 @@ const RouteComponent = () => (
         element={
           <MainTemplate>
             <ListagemView />
+          </MainTemplate>
+        }
+      />
+      <Route
+        path="/demonstracao/estado"
+        element={
+          <MainTemplate>
+            <DemonstraçaoEstado />
           </MainTemplate>
         }
       />
