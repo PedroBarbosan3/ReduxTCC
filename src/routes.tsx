@@ -1,17 +1,8 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import MainTemplate from "./components/templates/main/mainTemplate";
-import ListagemView from "./views/Lista";
-import DemonstraçaoEstado from "./demonstrações/estado";
-
-//Substituir o MainTemplate nas rotas que forem obrigatórias o login, pelo PrivateRoute
-// const PrivateRouteTemplateLogin = ({ children }: any) => {
-//   const authenticateState = useAppSelector((state) => state.authenticate);
-//   return authenticateState.sucess ? (
-//     <MainTemplate>{children}</MainTemplate>
-//   ) : (
-//     <Navigate to="/" />
-//   );
-// };
+import DemonstracaoEstado from "./demonstracoes/estado";
+import ListaToolkit from "./views/ListaToolkit";
+import ListaClassica from "./views/Lista";
 
 const RouteComponent = () => (
   <BrowserRouter>
@@ -20,7 +11,15 @@ const RouteComponent = () => (
         path="/"
         element={
           <MainTemplate>
-            <ListagemView />
+            <ListaClassica />
+          </MainTemplate>
+        }
+      />
+      <Route
+        path="/toolkit"
+        element={
+          <MainTemplate>
+            <ListaToolkit />
           </MainTemplate>
         }
       />
@@ -28,7 +27,7 @@ const RouteComponent = () => (
         path="/demonstracao/estado"
         element={
           <MainTemplate>
-            <DemonstraçaoEstado />
+            <DemonstracaoEstado />
           </MainTemplate>
         }
       />

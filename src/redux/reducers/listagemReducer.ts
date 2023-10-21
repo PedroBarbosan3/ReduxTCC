@@ -1,28 +1,46 @@
-import { ListagemActionTypes } from "../actions/listagemActions";
+import { BuscaFilmeModel } from "../../models/classico/buscaModel";
+import { CategoriasModel } from "../../models/classico/categoriasModel";
+import { FilmesModel } from "../../models/classico/filmesModel";
+import { ListagemAction } from "../actions/listagemActions";
 
 export interface ListagemState {
-  loading: boolean;
-  list: any[];
+  categoria: CategoriasModel[];
+  filmes: FilmesModel[];
+  modalCategoria: boolean;
+  modalFilme: boolean;
 }
 
 const initialState = {
-  loading: false,
-  list: [],
+  categoria: [
+    {
+      id: "Ação",
+      descricao: "Ação",
+    },
+  ],
+  filmes: [],
+  modalCategoria: false,
+  modalFilme: false,
 } as ListagemState;
 
-export default function ListagemReducer(
-  state: ListagemState = initialState,
-  action: any
-) {
+export const ListagemReducer = (state = initialState, action: ListagemAction): ListagemState => {
   switch (action.type) {
-    case ListagemActionTypes.LOADING:
-      state = { ...state, loading: action.payload };
+    case "ADICIONAR_CATEGORIA":
+      state = { ...state, categoria: [...state.categoria, action.payload] };
       break;
-    case ListagemActionTypes.GET_LIST:
-      state = { ...state, list: action.payload };
+    case "REMOVER_CATEGORIA":
+      state = { ...state, categoria: state.categoria.filter((categoria) => categoria.id !== action.payload) };
+      break;
+    case "ADICIONAR_FILME":
+      state = { ...state, filmes: [...state.filmes, action.payload] };
+      break;
+    case "SET_MODAL_CATEGORIA":
+      state = { ...state, modalCategoria: action.payload };
+      break;
+    case "SET_MODAL_FILME":
+      state = { ...state, modalFilme: action.payload };
       break;
     default:
       break;
   }
   return state;
-}
+};

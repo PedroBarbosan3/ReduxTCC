@@ -1,39 +1,32 @@
-export enum ListagemActionTypes {
-  LOADING = "Carregamento",
-  GET_LIST = "Listagem",
+import { BuscaFilmeModel } from "../../models/classico/buscaModel";
+import { CategoriasModel } from "../../models/classico/categoriasModel";
+import { FilmesModel } from "../../models/classico/filmesModel";
+import api from "../../services/api";
+
+export type ListagemAction = AdicionarCategoria | RemoverCategoria | AdicionarFilme | SetModalCategoria | SetModalFilme;
+
+//ação para adicionar nova categoria na lista
+export interface AdicionarCategoria {
+  type: "ADICIONAR_CATEGORIA";
+  payload: CategoriasModel;
 }
 
-export interface ListagemAction {
-  loading: (loading: boolean) => void;
-  getList: (list: any[]) => void;
+export interface RemoverCategoria {
+  type: "REMOVER_CATEGORIA";
+  payload: string;
 }
 
-export const listagemActions = (function listagemActions(): ListagemAction {
-  const actions = {
-    loading: (loading: boolean): any => ({
-      type: ListagemActionTypes.LOADING,
-      payload: loading,
-    }),
-    list: (list: any[]): any => ({
-      type: ListagemActionTypes.GET_LIST,
-      payload: list,
-    }),
-  };
+export interface AdicionarFilme {
+  type: "ADICIONAR_FILME";
+  payload: FilmesModel;
+}
 
-  const loading = (loading: boolean): any => {
-    return (dispatch: any) => {
-      dispatch(actions.loading(loading));
-    };
-  };
+export interface SetModalCategoria {
+  type: "SET_MODAL_CATEGORIA";
+  payload: boolean;
+}
 
-  const getList = (list: any[]): any => {
-    return (dispatch: any) => {
-      dispatch(actions.list(list));
-    };
-  };
-
-  return {
-    loading,
-    getList,
-  };
-})();
+export interface SetModalFilme {
+  type: "SET_MODAL_FILME";
+  payload: boolean;
+}

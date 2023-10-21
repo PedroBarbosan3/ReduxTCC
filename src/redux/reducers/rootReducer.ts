@@ -1,10 +1,6 @@
 import { combineReducers } from "redux";
-import listagem, { ListagemState } from "./listagemReducer";
-
-export interface AllStates {
-  listagem: ListagemState;
-}
+import { ListagemReducer } from "./listagemReducer";
 
 export default combineReducers({
-  listagem,
+  listagem: ListagemReducer,
 });

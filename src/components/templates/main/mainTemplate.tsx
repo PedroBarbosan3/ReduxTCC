@@ -1,5 +1,5 @@
 import "./style/mainTemplate.scss";
-import "antd/dist/antd.css";
+import "antd/dist/reset.css";
 import "react-toastify/dist/ReactToastify.css";
 import { Layout } from "antd";
 import { ToastContainer } from "react-toastify";
@@ -30,7 +30,7 @@ const MainTemplate = ({ children }: any) => {
             fontSize: "20px",
           }}
         >
-          LISTAGEM
+          REDUX TCC
         </Header>
         <Content
           style={{
