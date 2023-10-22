@@ -1,35 +1,71 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { buscarFilme } from "../../services/listagemService";
+import { CategoriasModel } from "../../models/classico/categoriasModel";
+import { FilmesModel } from "../../models/classico/filmesModel";
 
-interface listagemState {
-  sucess: boolean;
+export interface ListagemState {
   loading: boolean;
-  list: [];
+  categoria: CategoriasModel[];
+  filmes: FilmesModel[];
+  filmeEncontrado: FilmesModel;
+  modalCategoria: boolean;
+  modalFilme: boolean;
 }
 
-const initialState: listagemState = {
-  sucess: false,
+const initialState = {
   loading: false,
-  list: [],
-};
+  categoria: [
+    {
+      id: "Ação",
+      descricao: "Ação",
+    },
+  ],
+  filmes: [],
+  filmeEncontrado: {} as FilmesModel,
+  modalCategoria: false,
+  modalFilme: false,
+} as ListagemState;
 
 export const listagemSlice = createSlice({
   name: "listagem",
   initialState,
-  reducers: {},
-  // extraReducers: (builder) => {
-  //   builder.addCase(authenticate.pending, (state) => {
-  //     state.loading = true;
-  //   });
-  //   builder.addCase(authenticate.fulfilled, (state, action) => {
-  //     state.entity = action.payload;
-  //     state.loading = false;
-  //   });
-  //   builder.addCase(authenticate.rejected, (state, action) => {
-  //     state.loading = false;
-  //   });
-  // },
+  reducers: {
+    adicionarCategoria: (state, action) => {
+      state.categoria = [...state.categoria, action.payload];
+    },
+    removerCategoria: (state, action) => {
+      state.categoria = state.categoria.filter((categoria) => categoria.id !== action.payload);
+    },
+    adicionarFilme: (state, action) => {
+      state.filmes = [...state.filmes, action.payload];
+    },
+    setModalCategoria: (state, action) => {
+      state.modalCategoria = action.payload;
+    },
+    setModalFilme: (state, action) => {
+      state.modalFilme = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(buscarFilme.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(buscarFilme.fulfilled, (state, action) => {
+      state.filmeEncontrado = {
+        id: action.payload.Title,
+        descricao: action.payload.Plot,
+        imagem: action.payload.Poster,
+        titulo: action.payload.Title,
+        categoria: "",
+      };
+      state.loading = false;
+    });
+    builder.addCase(buscarFilme.rejected, (state, action) => {
+      state.loading = false;
+    });
+  },
 });
 
-export const {} = listagemSlice.actions;
+export const { adicionarCategoria, removerCategoria, adicionarFilme, setModalCategoria, setModalFilme } = listagemSlice.actions;
 
 export default listagemSlice.reducer;

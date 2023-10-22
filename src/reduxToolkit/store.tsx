@@ -1,12 +1,8 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import listagemReducer from "./Lista/listagemSlice";
-
-const reducers = combineReducers({
-  listagemReducer: listagemReducer,
-});
+import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./rootReducer";
 
 export const store = configureStore({
-  reducer: reducers,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware: any) =>
     getDefaultMiddleware({
       serializableCheck: false,
@@ -14,5 +10,7 @@ export const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
+
+export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
 
 export type AppDispatch = typeof store.dispatch;

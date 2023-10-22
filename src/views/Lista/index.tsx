@@ -1,30 +1,17 @@
-import { Avatar, Button, Col, Collapse, List, Modal, Row, Space } from "antd";
+import { Button, Col, Collapse, List, Modal, Row, Space, Image, Empty } from "antd";
 import { useDispatch } from "react-redux";
 import { CategoriasModel } from "../../models/classico/categoriasModel";
 import { useTypedSelector } from "../../redux/store/store";
 import { ListagemState } from "../../redux/reducers/listagemReducer";
 import ModalCategoria from "./modals/categoria";
 import ModalFilme from "./modals/filme";
-import { DeleteOutlined, PlayCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
-
-const data = [
-  {
-    title: "Ant Design Title 1",
-  },
-  {
-    title: "Ant Design Title 2",
-  },
-  {
-    title: "Ant Design Title 3",
-  },
-];
 
 const ListaClassica = () => {
   //estados globais
   const listagemState: ListagemState = useTypedSelector((state) => state.listagem);
-  console.log("lista", listagemState);
 
   //hooks
   const dispatch = useDispatch();
@@ -35,10 +22,10 @@ const ListaClassica = () => {
     dispatch({ type: "REMOVER_CATEGORIA", payload: idCategoria });
   };
 
-  const adicionarCategoria = () => {
+  const goModalCategoria = () => {
     dispatch({ type: "SET_MODAL_CATEGORIA", payload: true });
   };
-  const adicionarFilme = () => {
+  const goModalFilme = () => {
     dispatch({ type: "SET_MODAL_FILME", payload: true });
   };
 
@@ -54,13 +41,13 @@ const ListaClassica = () => {
     <Space direction="vertical" size="middle" style={{ display: "flex" }}>
       <Row gutter={[24, 24]}>
         <Col span={4}>
-          <Button icon={<PlusCircleOutlined rev={undefined} />} onClick={adicionarCategoria}>
+          <Button icon={<PlusCircleOutlined rev={undefined} />} onClick={goModalCategoria}>
             Adicionar Categoria
           </Button>
         </Col>
         <Col span={16}></Col>
         <Col span={4} style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button icon={<PlusCircleOutlined rev={undefined} />} onClick={adicionarFilme}>
+          <Button icon={<PlusCircleOutlined rev={undefined} />} onClick={goModalFilme}>
             Adicionar filme
           </Button>
         </Col>
@@ -81,16 +68,23 @@ const ListaClassica = () => {
                 >
                   <List
                     itemLayout="horizontal"
-                    dataSource={data}
-                    renderItem={(item, index) => (
-                      <List.Item>
-                        <List.Item.Meta
-                          avatar={<Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />}
-                          title={<a href="https://ant.design">{item.title}</a>}
-                          description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                        />
-                      </List.Item>
-                    )}
+                    dataSource={listagemState.filmes}
+                    renderItem={(item, index) => {
+                      return item.categoria === categoria.id ? (
+                        <List.Item>
+                          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: "5px" }}>
+                            <h2>Filme: {item.titulo}</h2>
+                            <div>
+                              <Image src={item.imagem} width={150} height={250} />
+                            </div>
+                            <div></div>
+                            <div>Descrição: {item.descricao}</div>
+                          </div>
+                        </List.Item>
+                      ) : (
+                        <Empty description={<span>Sem nenhum filme encontrado</span>} />
+                      );
+                    }}
                   />
                 </Panel>
               );

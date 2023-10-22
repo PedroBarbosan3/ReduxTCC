@@ -1,32 +1,30 @@
 import { Button, Col, Form, List, Row, Space, Image, Empty, Input, Divider } from "antd";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { FilmesModel } from "../../../../models/classico/filmesModel";
 import { SearchOutlined } from "@ant-design/icons";
-import { ListagemState } from "../../../../redux/reducers/listagemReducer";
-import { useTypedSelector } from "../../../../redux/store/store";
-import { buscarFilme } from "../../../../redux/actions/listagemActions";
+import { useAppDispatch, useAppSelector } from "../../../util/hooks";
+import { FilmesModel } from "../../../models/classico/filmesModel";
+import { ListagemState, adicionarFilme } from "../../../reduxToolkit/Lista/listagemSlice";
+import { buscarFilme } from "../../../services/listagemService";
 
-export const ModalFilme = () => {
-  //estados globais
-  const listagemState: ListagemState = useTypedSelector((state) => state.listagem);
-
+export const ModalFilmeToolkit = () => {
+  //Estados globais
+  const listagemState: ListagemState = useAppSelector((state) => state.listagem);
   //hooks
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   //estados locais
   const [form] = Form.useForm();
   const [titulo, setTitulo] = useState<string>("");
 
   const submit = (values: any) => {
-    let adicionarFilme: FilmesModel = {
+    let addFilme: FilmesModel = {
       id: listagemState.filmeEncontrado.id,
       titulo: listagemState.filmeEncontrado.titulo,
       imagem: listagemState.filmeEncontrado.imagem,
       descricao: listagemState.filmeEncontrado.descricao,
       categoria: values.categoria,
     };
-    dispatch({ type: "ADICIONAR_FILME", payload: adicionarFilme });
+    dispatch(adicionarFilme(addFilme));
   };
 
   const onChangeFilme = (value: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -99,4 +97,4 @@ export const ModalFilme = () => {
   );
 };
 
-export default ModalFilme;
+export default ModalFilmeToolkit;
