@@ -1,4 +1,3 @@
-import { BuscaFilmeModel } from "../../models/classico/buscaModel";
 import { CategoriasModel } from "../../models/classico/categoriasModel";
 import { FilmesModel } from "../../models/classico/filmesModel";
 import { ListagemAction } from "../actions/listagemActions";
@@ -54,3 +53,5 @@ export const ListagemReducer = (state = initialState, action: ListagemAction): L
   }
   return state;
 };
+
+

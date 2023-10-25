@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "../../util/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 //toolkit

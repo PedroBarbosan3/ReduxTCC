@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { buscarFilme } from "../../services/listagemService";
-import { CategoriasModel } from "../../models/classico/categoriasModel";
-import { FilmesModel } from "../../models/classico/filmesModel";
+import { CategoriasModel } from "../../../models/classico/categoriasModel";
+import { FilmesModel } from "../../../models/classico/filmesModel";
 
 export interface ListagemState {
   loading: boolean;
@@ -45,6 +45,16 @@ export const listagemSlice = createSlice({
     setModalFilme: (state, action) => {
       state.modalFilme = action.payload;
     },
+    filmeEncontradoFetch: (state, action) => {
+      state.loading = true;
+    },
+    filmeEncontradoSuccess: (state, action) => {
+      state.loading = false;
+      state.filmeEncontrado = action.payload;
+    },
+    filmeEncontradoFailure: (state, action) => {
+      state.loading = false;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(buscarFilme.pending, (state) => {
@@ -66,6 +76,6 @@ export const listagemSlice = createSlice({
   },
 });
 
-export const { adicionarCategoria, removerCategoria, adicionarFilme, setModalCategoria, setModalFilme } = listagemSlice.actions;
+export const { adicionarCategoria, removerCategoria, adicionarFilme, setModalCategoria, setModalFilme, filmeEncontradoFetch, filmeEncontradoSuccess, filmeEncontradoFailure } = listagemSlice.actions;
 
 export default listagemSlice.reducer;

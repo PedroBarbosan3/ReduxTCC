@@ -4,3 +4,4 @@ import { ListagemReducer } from "./listagemReducer";
 export default combineReducers({
   listagem: ListagemReducer,
 });
+

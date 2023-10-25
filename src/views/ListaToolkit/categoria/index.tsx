@@ -1,7 +1,7 @@
 import { Button, Col, Divider, Form, Input, Row, Space } from "antd";
 import { useAppDispatch } from "../../../util/hooks";
 import { CategoriasModel } from "../../../models/classico/categoriasModel";
-import { adicionarCategoria } from "../../../reduxToolkit/Lista/listagemSlice";
+import { adicionarCategoria } from "../../../reduxToolkit/slices/Lista/listagemSlice";
 
 export const ModalCategoriaToolkit = () => {
   //hooks

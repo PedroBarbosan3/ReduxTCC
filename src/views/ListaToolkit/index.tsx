@@ -1,7 +1,7 @@
 import { DeleteOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Col, Collapse, Empty, List, Modal, Row, Space, Image } from "antd";
 import { useAppDispatch, useAppSelector } from "../../util/hooks";
-import { removerCategoria, setModalCategoria, setModalFilme } from "../../reduxToolkit/Lista/listagemSlice";
+import { removerCategoria, setModalCategoria, setModalFilme } from "../../reduxToolkit/slices/Lista/listagemSlice";
 import { CategoriasModel } from "../../models/classico/categoriasModel";
 import ModalCategoriaToolkit from "./categoria";
 import ModalFilmeToolkit from "./filme";

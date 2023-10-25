@@ -5,8 +5,8 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { ConfigProvider } from "antd";
 import ptBR from "antd/lib/locale/pt_BR";
-// import { store } from "./reduxToolkit/store";
-import store from "./redux/store/store";
+// import store from "./redux/store/store";
+import { store } from "./reduxToolkit/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 

@@ -3,8 +3,8 @@ import { useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "../../../util/hooks";
 import { FilmesModel } from "../../../models/classico/filmesModel";
-import { ListagemState, adicionarFilme } from "../../../reduxToolkit/Lista/listagemSlice";
-import { buscarFilme } from "../../../services/listagemService";
+import { ListagemState, adicionarFilme, filmeEncontradoFetch } from "../../../reduxToolkit/slices/Lista/listagemSlice";
+import { buscarFilme } from "../../../reduxToolkit/services/listagemService";
 
 export const ModalFilmeToolkit = () => {
   //Estados globais
@@ -32,7 +32,10 @@ export const ModalFilmeToolkit = () => {
   };
 
   const procurarFilme = async () => {
-    await dispatch(buscarFilme(titulo));
+    //thunk
+    // await dispatch(buscarFilme(titulo));
+    //saga
+    await dispatch(filmeEncontradoFetch(titulo));
   };
 
   return (

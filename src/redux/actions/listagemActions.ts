@@ -1,10 +1,9 @@
 import { CategoriasModel } from "../../models/classico/categoriasModel";
 import { FilmesModel } from "../../models/classico/filmesModel";
-import api from "../../services/api";
+import api from "../../util/api";
 
 export type ListagemAction = SetLoading | AdicionarCategoria | RemoverCategoria | AdicionarFilme | FilmeEcontrado | SetModalCategoria | SetModalFilme;
 
-//ação para adicionar nova categoria na lista
 export interface SetLoading {
   type: "SET_LOADING";
   payload: boolean;
@@ -56,3 +55,6 @@ export const buscarFilme =
     await dispatch({ type: "FILME_ENCONTRADO", payload: filmeEcontrado });
     return data.data;
   };
+
+
+  
